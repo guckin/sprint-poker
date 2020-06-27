@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]=title>
+    </mat-form-field>
+    <div>
+        <div class="label">Pointing Scale</div>
+        <mat-button-toggle-group vertical=true name="pointingScale" aria-label="Pointing Scale" value="{{defaultValue}}}">
+            <mat-button-toggle *ngFor="let option of pointingScaleOptions" (change)="pointingScale=getPointingScale(option)" value="{{option.value}}}">
+                <div>
+                    {{getPointingScale(option).join(', ')}}
+                </div>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="submit()">Start</button>
+</div>
