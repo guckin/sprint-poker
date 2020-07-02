@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CreateFormResult, CreateSessionFormComponent} from '../create-session/create-session-form.component';
 import {MatDialog} from '@angular/material/dialog';
+import {SessionService} from '../session/session.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-main-menu',
@@ -10,7 +12,9 @@ import {MatDialog} from '@angular/material/dialog';
 export class MainMenuComponent implements OnInit {
 
 
-    constructor(public dialog: MatDialog) { }
+    constructor(public dialog: MatDialog,
+                private sessionService: SessionService,
+                private router: Router) { }
 
     ngOnInit(): void {
     }
@@ -21,7 +25,9 @@ export class MainMenuComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe((result: CreateFormResult) => {
-            console.log(result);
+            this.sessionService.createSession(result).subscribe(({id}) => {
+                this.router.navigateByUrl(`/session/${id}`);
+            });
         });
     }
 }

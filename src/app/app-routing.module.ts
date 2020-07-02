@@ -6,7 +6,7 @@ import {MainMenuComponent} from './main-menu/main-menu.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/main', pathMatch: 'full' },
-    {path: 'session', component: SessionComponent},
+    {path: 'session/:id', component: SessionComponent},
     {path: 'main', component: MainMenuComponent}
 ];
 
